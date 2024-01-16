@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Level {
+  ADMIN
+  HEAD_WH
+  SUPER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  fullName  String
+  birthday  DateTime @db.Date
+  hp        String?  @unique
+  status    Int      @default(1) @db.TinyInt
+  address   String?
+  level     Level    @default(ADMIN)
+  isDeleted Int      @default(0) @db.TinyInt
+
+  @@map("user")
+}
+
+model Unit {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  isDeleted Int        @default(0) @db.TinyInt
+  Medicine  Medicine[]
+
+  @@map("unit")
+}
+
+model Medicine {
+  id        Int        @id @default(autoincrement())
+  code      String     @unique
+  name      String
+  stock     Int        @default(0) @db.SmallInt
+  buyPrice  Decimal    @db.Decimal(8, 2)
+  sellPrice Decimal    @db.Decimal(8, 2)
+  unitId    Int
+  unitName  String
+  Unit      Unit       @relation(fields: [unitId], references: [id])
+  Sale      Sale[]
+  Purchase  Purchase[]
+  isDeleted Int        @default(0) @db.TinyInt
+
+  @@map("medicine")
+}
+
+model Supplier {
+  id        Int        @id @default(autoincrement())
+  name      String
+  hp        String     @unique
+  address   String?
+  isDeleted Int        @default(0) @db.TinyInt
+  Purchase  Purchase[]
+
+  @@map("supplier")
+}
+
+model Purchase {
+  id           Int      @id @default(autoincrement())
+  invoice      String   @unique
+  medicineId   Int
+  medicineName String
+  Medicine     Medicine @relation(fields: [medicineId], references: [id])
+  supplierId   Int
+  supplierName String
+  Supplier     Supplier @relation(fields: [supplierId], references: [id])
+  date         DateTime @db.Date
+  total        Decimal  @db.Decimal(10, 2)
+  quantity     Int
+
+  @@map("purchase")
+}
+
+model Sale {
+  id           Int      @id @default(autoincrement())
+  invoice      String   @unique
+  medicineId   Int
+  medicineName String
+  Medicine     Medicine @relation(fields: [medicineId], references: [id])
+  date         DateTime @db.Date
+  quantity     Int      @db.SmallInt
+  total        Decimal  @db.Decimal(10, 2)
+
+  @@map("sales")
+}

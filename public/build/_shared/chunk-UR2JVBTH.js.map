@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/utils/_helper.ts"],
+  "sourcesContent": ["// REMIX HMR BEGIN\nimport * as __hmr__ from \"remix:hmr\";\nif (import.meta) {\nimport.meta.hot = __hmr__.createHotContext(\n//@ts-expect-error\n\"app/utils/_helper.ts\"\n);\nimport.meta.hot.lastModified = \"1704561063456.705\";\n}\n// REMIX HMR END\n\nexport function rupiah(number: number) {\n\treturn new Intl.NumberFormat(\"id-ID\", {\n\t\tstyle: \"currency\",\n\t\tcurrency: \"IDR\",\n\t}).format(number);\n}\n\n/*\n\tformat date as YYYY-MM-DD\n*/\nexport function formatDate(date: Date) {\n\treturn date.toLocaleDateString(\"en-CA\");\n}\n"],
+  "mappings": ";;;;;AAEA,IAAI,aAAa;AACjB,cAAY,MAAc;AAAA;AAAA,IAE1B;AAAA,EACA;AACA,cAAY,IAAI,eAAe;AAC/B;AAGO,SAAS,OAAO,QAAgB;AACtC,SAAO,IAAI,KAAK,aAAa,SAAS;AAAA,IACrC,OAAO;AAAA,IACP,UAAU;AAAA,EACX,CAAC,EAAE,OAAO,MAAM;AACjB;AAKO,SAAS,WAAW,MAAY;AACtC,SAAO,KAAK,mBAAmB,OAAO;AACvC;",
+  "names": []
+}

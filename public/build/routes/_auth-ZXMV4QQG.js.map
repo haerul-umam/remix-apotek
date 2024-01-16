@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/_auth.tsx"],
+  "sourcesContent": ["// REMIX HMR BEGIN\nimport * as __hmr__ from \"remix:hmr\";\nif (import.meta) {\nimport.meta.hot = __hmr__.createHotContext(\n//@ts-expect-error\n\"app/routes/_auth.tsx\"\n);\nimport.meta.hot.lastModified = \"1701611100000\";\n}\n// REMIX HMR END\n\nimport { Outlet } from \"@remix-run/react\";\n\nexport default function () {\n\treturn (\n\t\t<div>\n\t\t\t<Outlet />\n\t\t</div>\n\t);\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;AAgBG;AAdH,IAAI,aAAa;AACjB,cAAY,MAAc;AAAA;AAAA,IAE1B;AAAA,EACA;AACA,cAAY,IAAI,eAAe;AAC/B;AAKe,SAAR,eAAoB;AAC1B,SACC,mDAAC,SACA,6DAAC,YAAD;AAAA;AAAA;AAAA;AAAA,SAAQ,KADT;AAAA;AAAA;AAAA;AAAA,SAEA;AAEF;",
+  "names": []
+}
